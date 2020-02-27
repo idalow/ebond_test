@@ -15,4 +15,9 @@ class Done_job extends Model
     {
         return $this->belongsTo(Employee::class);
     }
+
+    public function path()
+    {
+        return "/done_job/{$this->id}-" . Str::slug($this->task()->title);
+    }
 }
