@@ -17,4 +17,9 @@ class Task extends Model
     {
         return $this->hasOne(Done_job::class);
     }
+
+    public function path()
+    {
+        return "/task/{$this->id}-" . Str::slug($this->title);
+    }
 }
