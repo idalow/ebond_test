@@ -12,5 +12,10 @@ class Employee extends Model
     {
         return $this->hasMany(Done_job::class);
     }
-    
+
+    public function path()
+    {
+        return "/employee/{$this->id}-" . Str::slug($this->name);
+    }
+
 }
