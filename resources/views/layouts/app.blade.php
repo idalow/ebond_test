@@ -19,13 +19,11 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="subpixel-antialiased">
     <div id="app">
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-        
+        @yield('content')
+
     </div>
 </body>
 </html>

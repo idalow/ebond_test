@@ -12,7 +12,7 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        return EmployeeCollection(Employee::all());
+        return new EmployeeCollection(Employee::all());
     }
 
     public function store()
