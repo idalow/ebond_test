@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\EmployeeCollection;
 use App\Http\Resources\Employee as EmployeeResource;
 use App\Employee;
+use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
 
 class EmployeeController extends Controller
@@ -17,13 +18,13 @@ class EmployeeController extends Controller
 
     public function store()
     {
-        $employee = new Employee;
+        //$employee = new Employee;
 
-        $employee->create($this->validateData());
+        $employee = Employee::create($this->validateData());
 
-        return (new EmployeeResource($employee))
-            ->response()
-            ->setStatusCode(Response::HTTP_CREATED);
+        return new EmployeeResource($employee);
+            // ->response()
+            // ->setStatusCode(Response::HTTP_CREATED);
     }
 
     public function show(Employee $employee)
@@ -35,9 +36,7 @@ class EmployeeController extends Controller
     {
         $employee->update($this->validateData());
 
-        return (new EmployeeResource($employee))
-            ->response()
-            ->setStatusCode(Response::HTTP_OK);
+        return new EmployeeResource($employee);
     }
 
     private function validateData()
@@ -45,7 +44,7 @@ class EmployeeController extends Controller
         return request()->validate([
             'name' => 'required',
             'post' => 'required',
-            'email' => 'required|email',
+            'email' => 'required',
             'phone' => 'required',
         ]);
     }

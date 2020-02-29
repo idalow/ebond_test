@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class Employee extends Model
 {
-    protected $guraded =  [];
+    protected $fillable = ['name', 'post', 'email', 'phone'];
 
     public function done_jobs()
     {
