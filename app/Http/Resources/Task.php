@@ -22,6 +22,7 @@ class Task extends JsonResource
                     'title' => $this->title,
                     'description' => $this->description,
                     'partner' => new Partner($this->partner),
+                    'done' => !empty($this->done_jobs),
                 ],
             ],
             'links' => [

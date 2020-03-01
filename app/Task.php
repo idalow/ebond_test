@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class Task extends Model
 {   
-    protected $guraded =  [];
+    protected $fillable = ['title', 'description', 'partner_id',];
 
     public function partner()
     {

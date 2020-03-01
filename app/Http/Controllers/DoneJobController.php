@@ -12,18 +12,14 @@ class DoneJobController extends Controller
 {
     public function index()
     {
-        return DoneJobCollection(Done_job::all());
+        return new DoneJobCollection(Done_job::all());
     }
 
     public function store()
     {
-        $doneJob = new Done_job;
+        $doneJob = Done_job::create($this->validateData());
 
-        $doneJob->create($this->validateData());
-
-        return (new DoneJobResource($doneJob))
-            ->response()
-            ->setStatusCode(Response::HTTP_CREATED);
+        return new DoneJobResource($doneJob);
     }
 
     public function show(Done_job $doneJob)
@@ -35,9 +31,7 @@ class DoneJobController extends Controller
     {
         $doneJob->update($this->validateData());
 
-        return (new DoneJobResource($doneJob))
-            ->response()
-            ->setStatusCode(Response::HTTP_OK);
+        return new DoneJobResource($doneJob);
     }
 
     private function validateData()

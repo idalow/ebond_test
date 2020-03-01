@@ -10,7 +10,7 @@
         </div>
         <div v-if="partnersStatus != 'Success' || partnersStatus === null ">Loading partners...</div>
         <div v-else class="flex flex-col flex-wrap sm:flex-row">
-            <InfoCard class="sm:w-1/4 md:w-3/6 lg:w-1/6 p-2 m-2" v-for="(partner, partnerKey) in partners.data" :key="partnerKey" :partner="partner"/>
+            <InfoCard class="sm:w-1/4 md:w-3/6 lg:w-1/6 p-2 m-2" v-for="(partner, partnerKey) in partners.data" :key="partnerKey" :data="partner"/>
         </div>
     </div>
 

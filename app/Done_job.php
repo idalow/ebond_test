@@ -7,6 +7,8 @@ use Illuminate\Support\Str;
 
 class Done_job extends Model
 {
+    protected $fillable = ['task_id', 'employee_id', 'time'];
+
     public function task()
     {
         return $this->belongsTo(Task::class);
@@ -19,6 +21,6 @@ class Done_job extends Model
 
     public function path()
     {
-        return "/done_job/{$this->id}-" . Str::slug($this->task()->title);
+        return "/done_job/{$this->id}-" . Str::slug($this->task->title);
     }
 }

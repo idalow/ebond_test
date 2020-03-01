@@ -12,18 +12,14 @@ class PartnerController extends Controller
 {
     public function index()
     {
-        return PartnerCollection(Partner::all());
+        return new PartnerCollection(Partner::all());
     }
 
     public function store()
     {
-        $partner = new Partner;
+        $partner = Partner::create($this->validateData());
 
-        $partner->create($this->validateData());
-
-        return (new PartnerResource($partner))
-            ->response()
-            ->setStatusCode(Response::HTTP_CREATED);
+        return new PartnerResource($partner);
     }
 
     public function show(Partner $partner)
@@ -35,9 +31,7 @@ class PartnerController extends Controller
     {
         $partner->update($this->validateData());
 
-        return (new PartnerResource($partner))
-            ->response()
-            ->setStatusCode(Response::HTTP_OK);
+        return new PartnerResource($partner);
     }
 
     private function validateData()

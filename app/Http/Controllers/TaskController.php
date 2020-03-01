@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\TaskCollection;
-use App\Http\Resources\Tas as TaskResource;
+use App\Http\Resources\Task as TaskResource;
 use App\Task;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -12,18 +12,14 @@ class TaskController extends Controller
 {
     public function index()
     {
-        return TaskCollection(Task::all());
+        return new TaskCollection(Task::all());
     }
 
     public function store()
     {
-        $task = new Task;
+        $task = Task::create($this->validateData());
 
-        $task->create($this->validateData());
-
-        return (new TaskResource($task))
-            ->response()
-            ->setStatusCode(Response::HTTP_CREATED);
+        return new TaskResource($task);
     }
 
     public function show(Task $task)
@@ -35,9 +31,7 @@ class TaskController extends Controller
     {
         $task->update($this->validateData());
 
-        return (new TaskResource($task))
-            ->response()
-            ->setStatusCode(Response::HTTP_OK);
+        return new TaskResource($task);
     }
 
     private function validateData()
@@ -45,7 +39,7 @@ class TaskController extends Controller
         return request()->validate([
             'title' => 'required',
             'description' => 'required',
-            'partner_id' => 'required|email',
+            'partner_id' => 'required',
         ]);
     }
 }

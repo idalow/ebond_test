@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class Partner extends Model
 {
-    protected $guraded =  [];
+    protected $fillable = ['name', 'address', 'email', 'phone'];
 
     public function path()
     {

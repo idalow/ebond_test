@@ -24,5 +24,7 @@ Route::apiResources([
 
     '/employees' => 'EmployeeController',
     '/partners' => 'PartnerController',
+    '/tasks' => 'TaskController',
+    '/donejobs' => 'DoneJobController'
 
 ]);

@@ -18,13 +18,9 @@ class EmployeeController extends Controller
 
     public function store()
     {
-        //$employee = new Employee;
-
         $employee = Employee::create($this->validateData());
 
         return new EmployeeResource($employee);
-            // ->response()
-            // ->setStatusCode(Response::HTTP_CREATED);
     }
 
     public function show(Employee $employee)
@@ -44,7 +40,7 @@ class EmployeeController extends Controller
         return request()->validate([
             'name' => 'required',
             'post' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
             'phone' => 'required',
         ]);
     }
