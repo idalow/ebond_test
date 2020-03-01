@@ -2,12 +2,12 @@
 
     <div class="w-1/7 p-4 flex-row items-center border-b border-gray-400 shadow-2xl bg-gray-100">
 
-        <div class="flex-col py-10 justify-center select-none">
+        <div class="flex flex-col py-10 justify-center select-none">
             <img class="flex mx-auto rounded-full justify-center h-32 w-32 object-cover" :src="'../storage/mcdonalds.png'">
             <div class="flex font-semibold text-xl justify-center">McDonald's</div>
         </div>
         <!-- bg-color4 text-white hover:bg-color5 -->
-        <router-link to="/employee" active-class="text-color4" class="flex py-2 px-4 my-2 items-center justify-start font-semibold text-2xl text-gray-500 hover:text-color4 hover:no-underline rounded-lg">
+        <router-link to="/employee" active-class="text-color4" class="flex flex-row py-2 px-4 my-2 items-center justify-start font-semibold text-2xl text-gray-500 hover:text-color4 hover:no-underline rounded-lg">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
             <div class="px-2 tracking-wide">Employees</div>
         </router-link>

@@ -66,7 +66,7 @@
         watch: {
             partnersStatus: function(val) {
                 if (val === 'Sent' ) {
-                    this.$router.push('/partners');
+                    this.$router.push('/partner');
                 }
             }
         },

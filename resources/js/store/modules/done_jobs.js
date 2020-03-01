@@ -1,6 +1,8 @@
 const state = {
     doneJobs: null,
+    doneJobsForPartners: null,
     doneJobsStatus: 'Loading',
+    DoneJobsForPartnersStatus: 'Loading',
     doneJobErrors: null,
 };
 
@@ -13,7 +15,10 @@ const getters = {
     },
     doneJobErrors: state=> {
         return state.doneJobErrors;
-    }
+    },
+    doneJobsForPartners: state=> {
+        return state.doneJobsForPartners;
+    },
 };
 
 const actions = {
@@ -43,28 +48,15 @@ const actions = {
                 commit('setDoneJobErrors', errors.response.data.errors);
             });
     },
-    fetchDoneJob({commit, state}, doneJobId) {
-        commit('setDoneJobsStatus', 'Loading');
-        axios.get('/api/donejobs/' + doneJobId )
+    fetchPartnerDoneJobs({commit, state}, partnerId) {
+        commit('setDoneJobsForPartnersStatus', 'Loading');
+        axios.get('/api/partnersdonejobs/' + partnerId )
             .then(response => {
-                commit('setDoneJobs', response.data);
-                commit('setDoneJobsStatus', 'Success');
+                commit('setDoneJobsForPartners', response.data);
+                commit('setDoneJobsForPartnersStatus', 'Success');
             })
             .catch(error => {
-                commit('setDoneJobsStatus', 'Error');
-            });
-    },
-    updateDoneJob({commit, state}, data) {
-
-        commit('setDoneJobsStatus', 'Loading');
-
-        axios.patch('/api/donejobs/' + data.doneJobId, data.form)
-            .then(response => {
-                commit('setDoneJobsStatus', 'Sent');
-            })
-            .catch(errors => {
-                commit('setDoneJobsStatus', 'Error');
-                commit('setDoneJobErrors', errors.response.data.errors);
+                commit('setDoneJobsForPartnersStatus', 'Error');
             });
     },
 };
@@ -73,8 +65,14 @@ const mutations = {
     setDoneJobs(state, doneJobs) {
         state.doneJobs = doneJobs;
     },
+    setDoneJobsForPartners(state, doneJobs) {
+        state.DoneJobsForPartners = doneJobs;
+    },
     setDoneJobsStatus(state, status) {
         state.doneJobsStatus = status;
+    },
+    setDoneJobsForPartnersStatus(state, status) {
+        state.DoneJobsForPartnersStatus = status;
     },
     setDoneJobErrors(state, errors) {
         state.doneJobErrors = errors;

@@ -13,7 +13,7 @@ const getters = {
     },
     employeeErrors: state=> {
         return state.employeeErrors;
-    }
+    },
 };
 
 const actions = {

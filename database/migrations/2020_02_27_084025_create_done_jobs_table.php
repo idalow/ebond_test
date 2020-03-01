@@ -17,7 +17,7 @@ class CreateDoneJobsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('task_id');
             $table->unsignedBigInteger('employee_id');
-            $table->time('time');
+            $table->float('time');
             $table->timestamps();
         });
     }

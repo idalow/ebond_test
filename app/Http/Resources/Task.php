@@ -18,11 +18,11 @@ class Task extends JsonResource
             'data' => [
                 'type' => 'task',
                 'task_id' => $this->id,
+                'done' => !empty($this->done_jobs),
                 'attributes' => [
                     'title' => $this->title,
                     'description' => $this->description,
                     'partner' => new Partner($this->partner),
-                    'done' => !empty($this->done_jobs),
                 ],
             ],
             'links' => [

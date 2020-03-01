@@ -4,6 +4,7 @@ import Employee from './modules/employees';
 import Partner from './modules/partners';
 import Task from './modules/tasks';
 import DoneJob from './modules/done_jobs';
+import Title from './modules/title';
 
 Vue.use(Vuex);
 
@@ -13,5 +14,6 @@ export default new Vuex.Store({
         Partner,
         Task,
         DoneJob,
+        Title,
     }
 });

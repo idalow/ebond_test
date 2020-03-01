@@ -17,6 +17,7 @@ class TaskCollection extends ResourceCollection
         return [
             'data' => $this->collection,
             'task_count' => $this->count(),
+            'done_count' => $this->collection->sum('done'),
             'links' => [
                 'self' => url('/tasks'),
             ]

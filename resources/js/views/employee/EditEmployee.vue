@@ -66,7 +66,7 @@
         watch: {
             employeesStatus: function(val) {
                 if (val === 'Sent' ) {
-                    this.$router.push('/employees');
+                    this.$router.push('/employee');
                 }
             }
         },
