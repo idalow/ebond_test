@@ -16,7 +16,7 @@ class CreatePartnersTable extends Migration
         Schema::create('partners', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('avatar');
+            $table->string('avatar')->default("../storage/default-user-img.jpg");
             $table->string('address');
             $table->string('email')->unique();
             $table->string('phone', 15)->unique();

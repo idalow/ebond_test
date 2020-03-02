@@ -16,8 +16,8 @@
             </div>
         </div>
 
-        <div class="w-full border-b-2 my-4">
-            <img class="w-auto mx-auto rounded-full object-cover pb-6" :src="'../storage/default-user-img.jpg'">
+        <div class="flex mb-2 justify-center items-center pb-6">
+            <img class="h-20 w-20 rounded-full object-cover" :src="employees.data.attributes.avatar">
         </div>
 
         <ShowField label="name" :data="employees.data.attributes.name" />

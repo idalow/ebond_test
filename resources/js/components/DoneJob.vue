@@ -8,7 +8,7 @@
         <TaskInfo :data="data.data.attributes.task" />
 
         <div class="flex flex-col items-center">
-            <img class="w-auto h-10 rounded-full object-cover" :src="'../storage/default-user-img.jpg'">
+            <img class="w-10 h-10 rounded-full object-cover" :src="data.data.attributes.employee.data.attributes.avatar">
             <p class="font-semibold text-base pl-2"> {{ data.data.attributes.employee.data.attributes.name }} </p>
             <p class="font-semibold text-base text-gray-500 pl-2"> {{ data.data.attributes.time }} </p>
         </div>

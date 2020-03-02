@@ -39569,8 +39569,10 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "flex flex-col items-center" }, [
         _c("img", {
-          staticClass: "w-auto h-10 rounded-full object-cover",
-          attrs: { src: "../storage/default-user-img.jpg" }
+          staticClass: "w-10 h-10 rounded-full object-cover",
+          attrs: {
+            src: _vm.data.data.attributes.employee.data.attributes.avatar
+          }
         }),
         _vm._v(" "),
         _c("p", { staticClass: "font-semibold text-base pl-2" }, [
@@ -39619,10 +39621,10 @@ var render = function() {
       attrs: { to: _vm.data.links.self }
     },
     [
-      _c("div", { staticClass: "mb-2" }, [
+      _c("div", { staticClass: "flex mb-2 justify-center items-center " }, [
         _c("img", {
-          staticClass: "w-auto mx-auto rounded-full object-cover",
-          attrs: { src: "../storage/default-user-img.jpg" }
+          staticClass: "h-20 w-20 rounded-full object-cover",
+          attrs: { src: _vm.data.data.attributes.avatar }
         })
       ]),
       _vm._v(" "),
@@ -40212,8 +40214,8 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "flex flex-row items-center" }, [
       _c("img", {
-        staticClass: "w-auto h-8 rounded-full object-cover",
-        attrs: { src: "../storage/default-user-img.jpg" }
+        staticClass: "w-8 h-8 rounded-full object-cover",
+        attrs: { src: _vm.data.data.attributes.partner.data.attributes.avatar }
       }),
       _vm._v(" "),
       _c("p", { staticClass: "font-semibold text-base text-gray-500 pl-2" }, [
@@ -41039,12 +41041,16 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "w-full border-b-2 my-4" }, [
-            _c("img", {
-              staticClass: "w-auto mx-auto rounded-full object-cover pb-6",
-              attrs: { src: "../storage/default-user-img.jpg" }
-            })
-          ]),
+          _c(
+            "div",
+            { staticClass: "flex mb-2 justify-center items-center pb-6" },
+            [
+              _c("img", {
+                staticClass: "h-20 w-20 rounded-full object-cover",
+                attrs: { src: _vm.employees.data.attributes.avatar }
+              })
+            ]
+          ),
           _vm._v(" "),
           _c("ShowField", {
             attrs: { label: "name", data: _vm.employees.data.attributes.name }
@@ -41608,12 +41614,16 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "w-full border-b-2 my-4" }, [
-            _c("img", {
-              staticClass: "w-auto mx-auto rounded-full object-cover pb-6",
-              attrs: { src: "../storage/default-user-img.jpg" }
-            })
-          ]),
+          _c(
+            "div",
+            { staticClass: "flex mb-2 justify-center items-center pb-6" },
+            [
+              _c("img", {
+                staticClass: "h-20 w-20 rounded-full object-cover",
+                attrs: { src: _vm.partners.data.attributes.avatar }
+              })
+            ]
+          ),
           _vm._v(" "),
           _c("ShowField", {
             attrs: { label: "name", data: _vm.partners.data.attributes.name }
