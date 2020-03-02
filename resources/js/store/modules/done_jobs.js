@@ -50,7 +50,7 @@ const actions = {
     },
     fetchPartnerDoneJobs({commit, state}, partnerId) {
         commit('setDoneJobsForPartnersStatus', 'Loading');
-        axios.get('/api/partnersdonejobs/' + partnerId )
+        axios.get('/api/getdonejobsbypartners/' + partnerId )
             .then(response => {
                 commit('setDoneJobsForPartners', response.data);
                 commit('setDoneJobsForPartnersStatus', 'Success');
@@ -66,13 +66,13 @@ const mutations = {
         state.doneJobs = doneJobs;
     },
     setDoneJobsForPartners(state, doneJobs) {
-        state.DoneJobsForPartners = doneJobs;
+        state.doneJobsForPartners = doneJobs;
     },
     setDoneJobsStatus(state, status) {
         state.doneJobsStatus = status;
     },
     setDoneJobsForPartnersStatus(state, status) {
-        state.DoneJobsForPartnersStatus = status;
+        state.doneJobsForPartnersStatus = status;
     },
     setDoneJobErrors(state, errors) {
         state.doneJobErrors = errors;

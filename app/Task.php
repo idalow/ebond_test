@@ -14,7 +14,7 @@ class Task extends Model
         return $this->belongsTo(Partner::class);
     }
 
-    public function done_jobs()
+    public function done_job()
     {
         return $this->hasOne(Done_job::class);
     }

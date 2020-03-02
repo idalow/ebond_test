@@ -49,7 +49,7 @@
 
         },
 
-        mounted() {
+        created() {
 
             this.$store.dispatch('fetchEmployee', this.$route.params.id);
 

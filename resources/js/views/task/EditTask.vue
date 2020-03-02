@@ -77,7 +77,7 @@
             }
         },
 
-        mounted() {
+        created() {
 
             this.$store.dispatch('fetchTask', this.$route.params.id);
             this.$store.dispatch('fetchPartners');

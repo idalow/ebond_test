@@ -2316,7 +2316,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     doneJobs: 'doneJobs',
     doneJobsStatus: 'doneJobsStatus'
   })),
-  mounted: function mounted() {
+  created: function created() {
     this.$store.dispatch('fetchDoneJobs');
   }
 });
@@ -2386,21 +2386,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     doneJobs: 'doneJobs',
     doneJobsStatus: 'doneJobsStatus',
     partners: 'partners',
-    partnersStatus: 'partnersStatus'
+    partnersStatus: 'partnersStatus',
+    doneJobsForPartners: 'doneJobsForPartners'
   })),
   data: function data() {
     return {
       selectedPartner: null
     };
   },
-  mounted: function mounted() {
+  created: function created() {
     this.$store.dispatch('fetchDoneJobs');
     this.$store.dispatch('fetchPartners');
-  },
-  methods: {
-    getDatas: function getDatas() {
-      this.$store.dispatch('fetchPartnerDoneJobs', this.selectedPartner);
-    }
   }
 });
 
@@ -2485,7 +2481,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  mounted: function mounted() {
+  created: function created() {
     this.$store.dispatch('fetchEmployee', this.$route.params.id);
   }
 });
@@ -2538,7 +2534,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     employees: 'employees',
     employeesStatus: 'employeesStatus'
   })),
-  mounted: function mounted() {
+  created: function created() {
     this.$store.dispatch('fetchEmployees');
   }
 });
@@ -2687,7 +2683,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     employees: 'employees',
     employeesStatus: 'employeesStatus'
   })),
-  mounted: function mounted() {
+  created: function created() {
     this.$store.dispatch('fetchEmployee', this.$route.params.id);
   }
 });
@@ -2741,7 +2737,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     employees: 'employees',
     employeesStatus: 'employeesStatus'
   })),
-  mounted: function mounted() {
+  created: function created() {
     this.$store.dispatch('fetchEmployee', this.$route.params.id);
   }
 });
@@ -2827,7 +2823,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  mounted: function mounted() {
+  created: function created() {
     this.$store.dispatch('fetchPartner', this.$route.params.id);
   }
 });
@@ -2962,7 +2958,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     partners: 'partners',
     partnersStatus: 'partnersStatus'
   })),
-  mounted: function mounted() {
+  created: function created() {
     this.$store.dispatch('fetchPartners');
   }
 });
@@ -3022,7 +3018,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     partners: 'partners',
     partnersStatus: 'partnersStatus'
   })),
-  mounted: function mounted() {
+  created: function created() {
     this.$store.dispatch('fetchPartner', this.$route.params.id);
   }
 });
@@ -3119,7 +3115,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  mounted: function mounted() {
+  created: function created() {
     this.$store.dispatch('fetchTask', this.$route.params.id);
     this.$store.dispatch('fetchEmployees');
   }
@@ -3211,7 +3207,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  mounted: function mounted() {
+  created: function created() {
     this.$store.dispatch('fetchTask', this.$route.params.id);
     this.$store.dispatch('fetchPartners');
   }
@@ -3300,7 +3296,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  mounted: function mounted() {
+  created: function created() {
     this.$store.dispatch('fetchPartners');
   }
 });
@@ -3340,6 +3336,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3351,10 +3369,52 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
     tasks: 'tasks',
-    tasksStatus: 'tasksStatus'
-  })),
-  mounted: function mounted() {
+    tasksStatus: 'tasksStatus',
+    partners: 'partners',
+    partnersStatus: 'partnersStatus',
+    tasksForPartners: 'tasksForPartners'
+  }), {
+    notDoneYet: function notDoneYet() {
+      return this.tasks.task_count - this.done;
+    },
+    partnerNotDoneYet: function partnerNotDoneYet() {
+      return this.tasksForPartners.task_count - this.partnerDone;
+    },
+    done: function done() {
+      var count = 0;
+
+      for (var i = 0; i < this.tasks.data.length; i++) {
+        if (this.tasks.data[i].data.done === true) {
+          count++;
+        }
+
+        ;
+      }
+
+      return count;
+    },
+    partnerDone: function partnerDone() {
+      var count = 0;
+
+      for (var i = 0; i < this.tasksForPartners.data.length; i++) {
+        if (this.tasksForPartners.data[i].data.done === true) {
+          count++;
+        }
+
+        ;
+      }
+
+      return count;
+    }
+  }),
+  data: function data() {
+    return {
+      selectedPartner: null
+    };
+  },
+  created: function created() {
     this.$store.dispatch('fetchTasks');
+    this.$store.dispatch('fetchPartners');
   }
 });
 
@@ -3413,7 +3473,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     tasks: 'tasks',
     tasksStatus: 'tasksStatus'
   })),
-  mounted: function mounted() {
+  created: function created() {
     this.$store.dispatch('fetchTasks');
   }
 });
@@ -40015,9 +40075,7 @@ var render = function() {
     {
       staticClass:
         "flex flex-row items-center justify-between bg-white px-4 py-2 rounded-lg shadow-lg",
-      class: _vm.data.data.attributes.done
-        ? "bg-green-300"
-        : "hover:bg-gray-200",
+      class: _vm.data.data.done ? "bg-green-300" : "hover:bg-gray-200",
       on: {
         mouseover: function($event) {
           _vm.mouseover = true
@@ -40030,7 +40088,7 @@ var render = function() {
     [
       _c("TaskInfo", { attrs: { data: _vm.data } }),
       _vm._v(" "),
-      _vm.mouseover && !_vm.data.data.attributes.done
+      _vm.mouseover && !_vm.data.data.done
         ? _c(
             "div",
             { staticClass: "flex flex-row" },
@@ -40409,7 +40467,10 @@ var render = function() {
                           : $$selectedVal[0]
                       },
                       function($event) {
-                        return _vm.getDatas()
+                        return _vm.$store.dispatch(
+                          "fetchPartnerDoneJobs",
+                          _vm.selectedPartner
+                        )
                       }
                     ]
                   }
@@ -40435,18 +40496,25 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("ShowField", {
-              staticClass: "flex justify-center",
-              attrs: { label: "Worktime", data: _vm.doneJobs.time_count }
-            }),
+            _vm.doneJobsForPartners
+              ? _c("ShowField", {
+                  staticClass: "flex justify-center",
+                  attrs: {
+                    label: "Worktime",
+                    data: _vm.doneJobsForPartners.time_count
+                  }
+                })
+              : _vm._e(),
             _vm._v(" "),
-            _c("ShowField", {
-              staticClass: "flex justify-center",
-              attrs: {
-                label: "Finished jobs",
-                data: _vm.doneJobs.done_job_count
-              }
-            })
+            _vm.doneJobsForPartners
+              ? _c("ShowField", {
+                  staticClass: "flex justify-center",
+                  attrs: {
+                    label: "Finished jobs",
+                    data: _vm.doneJobsForPartners.done_job_count
+                  }
+                })
+              : _vm._e()
           ],
           1
         )
@@ -42101,7 +42169,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.tasksStatus === "Success"
+  return _vm.tasksStatus === "Success" && _vm.partnersStatus === "Success"
     ? _c("div", { staticClass: "flex flex-col" }, [
         _c(
           "div",
@@ -42116,17 +42184,115 @@ var render = function() {
           "div",
           { staticClass: "flex justify-around " },
           [
+            _c("div", { staticClass: "font-semibold text-2xl py-1" }, [
+              _vm._v("Total:")
+            ]),
+            _vm._v(" "),
             _c("ShowField", {
               attrs: { label: "All", data: _vm.tasks.task_count }
             }),
             _vm._v(" "),
-            _c("ShowField", {
-              attrs: { label: "Done", data: _vm.tasks.task_count }
-            }),
+            _c("ShowField", { attrs: { label: "Done", data: _vm.done } }),
             _vm._v(" "),
             _c("ShowField", {
-              attrs: { label: "Not done yet", data: _vm.tasks.task_count }
+              attrs: { label: "Not done yet", data: _vm.notDoneYet }
             })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "flex flex-row w-full justify-around items-center py-4"
+          },
+          [
+            _c("div", { staticClass: "flex justify-center" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "uppercase text-xs font-bold absolute pl-3 pt-2",
+                  attrs: { for: "partner" }
+                },
+                [_vm._v(" partner ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.selectedPartner,
+                      expression: "selectedPartner"
+                    }
+                  ],
+                  staticClass:
+                    "pt-8 w-full rounded-lg border border-gray-200 p-3 placeholder-gray-400 outline-none focus:bg-gray-200 shadow-lg",
+                  attrs: { id: "partner" },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.selectedPartner = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      function($event) {
+                        return _vm.$store.dispatch(
+                          "fetchPartnerTasks",
+                          _vm.selectedPartner
+                        )
+                      }
+                    ]
+                  }
+                },
+                _vm._l(_vm.partners.data, function(partner, partnerKey) {
+                  return _c(
+                    "option",
+                    {
+                      key: partnerKey,
+                      staticClass: "p-10",
+                      domProps: { value: partner.data.partner_id }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(partner.data.attributes.name) +
+                          "\n                "
+                      )
+                    ]
+                  )
+                }),
+                0
+              )
+            ]),
+            _vm._v(" "),
+            _vm.tasksForPartners
+              ? _c("ShowField", {
+                  attrs: { label: "All", data: _vm.tasksForPartners.task_count }
+                })
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.tasksForPartners
+              ? _c("ShowField", {
+                  attrs: { label: "Done", data: _vm.partnerDone }
+                })
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.tasksForPartners
+              ? _c("ShowField", {
+                  attrs: { label: "Not done yet", data: _vm.partnerNotDoneYet }
+                })
+              : _vm._e()
           ],
           1
         )
@@ -59356,7 +59522,7 @@ var actions = {
     var commit = _ref3.commit,
         state = _ref3.state;
     commit('setDoneJobsForPartnersStatus', 'Loading');
-    axios.get('/api/partnersdonejobs/' + partnerId).then(function (response) {
+    axios.get('/api/getdonejobsbypartners/' + partnerId).then(function (response) {
       commit('setDoneJobsForPartners', response.data);
       commit('setDoneJobsForPartnersStatus', 'Success');
     })["catch"](function (error) {
@@ -59369,13 +59535,13 @@ var mutations = {
     state.doneJobs = doneJobs;
   },
   setDoneJobsForPartners: function setDoneJobsForPartners(state, doneJobs) {
-    state.DoneJobsForPartners = doneJobs;
+    state.doneJobsForPartners = doneJobs;
   },
   setDoneJobsStatus: function setDoneJobsStatus(state, status) {
     state.doneJobsStatus = status;
   },
   setDoneJobsForPartnersStatus: function setDoneJobsForPartnersStatus(state, status) {
-    state.DoneJobsForPartnersStatus = status;
+    state.doneJobsForPartnersStatus = status;
   },
   setDoneJobErrors: function setDoneJobErrors(state, errors) {
     state.doneJobErrors = errors;
@@ -59584,14 +59750,22 @@ __webpack_require__.r(__webpack_exports__);
 var state = {
   tasks: null,
   tasksStatus: 'Loading',
+  tasksForPartners: null,
+  tasksForPartnersStatus: 'Loading',
   taskErrors: null
 };
 var getters = {
   tasks: function tasks(state) {
     return state.tasks;
   },
+  tasksForPartners: function tasksForPartners(state) {
+    return state.tasksForPartners;
+  },
   tasksStatus: function tasksStatus(state) {
     return state.tasksStatus;
+  },
+  tasksForPartnersStatus: function tasksForPartnersStatus(state) {
+    return state.tasksForPartnersStatus;
   },
   taskErrors: function taskErrors(state) {
     return state.taskErrors;
@@ -59641,11 +59815,28 @@ var actions = {
       commit('setTasksStatus', 'Error');
       commit('setTaskErrors', errors.response.data.errors);
     });
+  },
+  fetchPartnerTasks: function fetchPartnerTasks(_ref5, partnerId) {
+    var commit = _ref5.commit,
+        state = _ref5.state;
+    commit('setTasksForPartnersStatus', 'Loading');
+    axios.get('/api/gettasksbypartners/' + partnerId).then(function (response) {
+      commit('setTasksForPartners', response.data);
+      commit('setTasksForPartnersStatus', 'Success');
+    })["catch"](function (error) {
+      commit('setTasksForPartnersStatus', 'Error');
+    });
   }
 };
 var mutations = {
   setTasks: function setTasks(state, tasks) {
     state.tasks = tasks;
+  },
+  setTasksForPartners: function setTasksForPartners(state, tasks) {
+    state.tasksForPartners = tasks;
+  },
+  setTasksForPartnersStatus: function setTasksForPartnersStatus(state, status) {
+    state.TasksForPartnersStatus = status;
   },
   setTasksStatus: function setTasksStatus(state, status) {
     state.tasksStatus = status;

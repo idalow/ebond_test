@@ -43,7 +43,7 @@
 
         },
 
-        mounted() {
+        created() {
 
             this.$store.dispatch('fetchTasks');
 

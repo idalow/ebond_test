@@ -36,7 +36,7 @@
 
         },
 
-        mounted() {
+        created() {
 
             this.$store.dispatch('fetchPartners');
 

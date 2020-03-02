@@ -15,7 +15,7 @@
                 <label for="partner" class="uppercase text-xs font-bold absolute pl-3 pt-2"> partner </label>
                 <select id="partner" class="pt-8 w-full rounded-lg border border-gray-200 p-3 placeholder-gray-400 outline-none focus:bg-gray-200 shadow-lg"
                     v-model="selectedPartner"
-                    @change="getDatas()">
+                    @change="$store.dispatch('fetchPartnerDoneJobs', selectedPartner)">
                     <option v-for="(partner, partnerKey) in partners.data" :key="partnerKey"
                     :value="partner.data.partner_id" 
                     class="p-10">
@@ -23,9 +23,9 @@
                     </option>
                 </select>
             </div>
-
-            <ShowField class="flex justify-center" label="Worktime" :data="doneJobs.time_count" />
-            <ShowField class="flex justify-center" label="Finished jobs" :data="doneJobs.done_job_count" />
+            
+            <ShowField v-if="doneJobsForPartners" class="flex justify-center" label="Worktime" :data="doneJobsForPartners.time_count" />
+            <ShowField v-if="doneJobsForPartners" class="flex justify-center" label="Finished jobs" :data="doneJobsForPartners.done_job_count" />
 
         </div>
 
@@ -51,6 +51,7 @@
                 doneJobsStatus: 'doneJobsStatus',
                 partners: 'partners',
                 partnersStatus: 'partnersStatus',
+                doneJobsForPartners: 'doneJobsForPartners',
             })
 
         },
@@ -61,20 +62,12 @@
             }
         },
 
-        mounted() {
+        created() {
 
             this.$store.dispatch('fetchDoneJobs');
             this.$store.dispatch('fetchPartners');
 
         },
 
-        methods: {
-
-            getDatas() {
-
-                this.$store.dispatch('fetchPartnerDoneJobs', this.selectedPartner);
-
-            }
-        }
     }
 </script>

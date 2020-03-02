@@ -71,7 +71,7 @@
             }
         },
 
-        mounted() {
+        created() {
 
             this.$store.dispatch('fetchPartner', this.$route.params.id);
 

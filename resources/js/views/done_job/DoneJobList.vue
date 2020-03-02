@@ -37,7 +37,7 @@
 
         },
 
-        mounted() {
+        created() {
 
             this.$store.dispatch('fetchDoneJobs');
 

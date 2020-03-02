@@ -20,6 +20,9 @@ use Illuminate\Http\Request;
 // Route::get('/employees', 'EmployeeController@index');
 // Route::post('/employees', 'EmployeeController@store');
 
+Route::get('/getdonejobsbypartners/{partner}', 'GetDoneJobsByPartnersController');
+Route::get('/gettasksbypartners/{partner}', 'GetTasksByPartnersController');
+
 Route::apiResources([
 
     '/employees' => 'EmployeeController',

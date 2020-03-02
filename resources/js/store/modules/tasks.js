@@ -1,6 +1,8 @@
 const state = {
     tasks: null,
     tasksStatus: 'Loading',
+    tasksForPartners: null,
+    tasksForPartnersStatus: 'Loading',
     taskErrors: null,
 };
 
@@ -8,8 +10,14 @@ const getters = {
     tasks: state => {
         return state.tasks;
     },
+    tasksForPartners: state => {
+        return state.tasksForPartners;
+    },
     tasksStatus: state => {
         return state.tasksStatus;
+    },
+    tasksForPartnersStatus: state => {
+        return state.tasksForPartnersStatus;
     },
     taskErrors: state=> {
         return state.taskErrors;
@@ -67,11 +75,28 @@ const actions = {
                 commit('setTaskErrors', errors.response.data.errors);
             });
     },
+    fetchPartnerTasks({commit, state}, partnerId) {
+        commit('setTasksForPartnersStatus', 'Loading');
+        axios.get('/api/gettasksbypartners/' + partnerId )
+            .then(response => {
+                commit('setTasksForPartners', response.data);
+                commit('setTasksForPartnersStatus', 'Success');
+            })
+            .catch(error => {
+                commit('setTasksForPartnersStatus', 'Error');
+            });
+    },
 };
 
 const mutations = {
     setTasks(state, tasks) {
         state.tasks = tasks;
+    },
+    setTasksForPartners(state, tasks) {
+        state.tasksForPartners = tasks;
+    },
+    setTasksForPartnersStatus(state, status) {
+        state.TasksForPartnersStatus = status;
     },
     setTasksStatus(state, status) {
         state.tasksStatus = status;
