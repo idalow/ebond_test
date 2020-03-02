@@ -20,6 +20,7 @@ class Employee extends JsonResource
                 'employee_id' => $this->id,
                 'attributes' => [
                     'name' => $this->name,
+                    'avatar' => $this->avatar,
                     'post' => $this->post,
                     'email' => $this->email,
                     'phone' => $this->phone,

@@ -20,6 +20,7 @@ class Partner extends JsonResource
                 'partner_id' => $this->id,
                 'attributes' => [
                     'name' => $this->name,
+                    'avatar' => $this->avatar,
                     'address' => $this->address,
                     'email' => $this->email,
                     'phone' => $this->phone,
