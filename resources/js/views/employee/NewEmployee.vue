@@ -4,6 +4,8 @@
 
         <div class="text-4xl font-bold uppercase tracking-wide text-color4">Add new employee</div>
 
+        <ImageUploader :image="'/storage/avatar/default-user-img.jpg'" @update:field="form.avatar = $event" />
+
         <InputField name="name" label="name" autocomplete="name" type="text" :errors="employeeErrors"
             placeholder="Will Smith" @update:field="form.name = $event"/>
 
@@ -33,6 +35,7 @@
 
 <script>
     import InputField from '../../components/InputField';
+    import ImageUploader from '../../components/ImageUploader';
     import { mapGetters } from 'vuex';
 
     export default {
@@ -40,6 +43,7 @@
 
         components: {
             InputField,
+            ImageUploader,
         },
 
         computed: {
@@ -54,6 +58,7 @@
         data: function () {
             return {
                 form: {
+                    'avatar': '',
                     'name': '',
                     'post': '',
                     'email': '',
@@ -70,8 +75,5 @@
             }
         },
 
-        mounted() {
-        
-        }
     }
 </script>

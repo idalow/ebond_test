@@ -1,8 +1,8 @@
 <template>
     <div class="py-2">
-        <label :for="name" class="uppercase text-xs font-bold absolute pl-3 pt-2">{{ label }}</label>
+        <label :for="name" class="uppercase text-xs text-gray-700 font-bold absolute pl-3 pt-2">{{ label }}</label>
         <div>
-            <input :id="name" class="pt-8 w-full rounded-lg border border-gray-200 p-3 placeholder-gray-400 outline-none focus:bg-gray-200 shadow-lg" :class="errorClassObject()" :placeholder="placeholder" :autocomplete="autocomplete" :type="type" v-model="value" @input="updateField()">
+            <input :id="name" class="pt-8 w-full rounded-lg p-3 placeholder-gray-400 outline-none focus:bg-purple-100 shadow-inner" :class="errorClassObject()" :placeholder="placeholder" :autocomplete="autocomplete" :type="type" v-model="value" @input="updateField()">
             <p class="text-red-600 text-sm pt-1" v-text="errorMessage()">Error Here</p>
         </div>
     </div>

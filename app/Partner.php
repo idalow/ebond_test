@@ -18,4 +18,12 @@ class Partner extends Model
     {
         return "/partner/{$this->id}-" . Str::slug($this->name);
     }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable')
+            ->withDefault(function ($image) {
+                $image->url = 'avatar\default-user-img.jpg';
+            });
+    }
 }

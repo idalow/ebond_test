@@ -20,7 +20,7 @@ class EmployeeController extends Controller
     {
         $employee = Employee::create($this->validateData());
 
-        $this->storeImage($employee);
+        $employee->image->storeImage($employee);
 
         return new EmployeeResource($employee);
     }
@@ -34,6 +34,10 @@ class EmployeeController extends Controller
     {
         $employee->update($this->validateData());
 
+        $employee->image->storeImage($employee);
+
+        $employee->save();
+        
         return new EmployeeResource($employee);
     }
 
@@ -42,18 +46,9 @@ class EmployeeController extends Controller
         return request()->validate([
             'name' => 'required',
             'post' => 'required',
-            'email' => 'required|email',
+            'email' =>  'required|email',
             'phone' => 'required',
         ]);
     }
 
-    private function storeImage($employee) {
-
-        if ( request()->has('avatar')) {
-            
-            $employee->image()->create([
-                'url' => request()->avatar->store('avatar','public'),
-            ]);
-        }
-    }
 }

@@ -19,6 +19,8 @@ class PartnerController extends Controller
     {
         $partner = Partner::create($this->validateData());
 
+        $partner->image->storeImage($partner);
+
         return new PartnerResource($partner);
     }
 
@@ -30,6 +32,8 @@ class PartnerController extends Controller
     public function update(Partner $partner)
     {
         $partner->update($this->validateData());
+
+        $partner->image->storeImage($partner);
 
         return new PartnerResource($partner);
     }

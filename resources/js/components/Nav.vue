@@ -3,7 +3,7 @@
     <div class="w-1/7 p-4 flex-row items-center border-b border-gray-400 shadow-2xl bg-gray-100">
 
         <div class="flex flex-col py-10 justify-center select-none">
-            <img class="flex mx-auto rounded-full justify-center h-32 w-32 object-cover" :src="'../storage/mcdonalds.png'">
+            <img class="flex mx-auto rounded-full justify-center h-32 w-32 object-cover" :src="'../storage/avatar/mcdonalds.png'">
             <div class="flex font-semibold text-xl justify-center">McDonald's</div>
         </div>
         <!-- bg-color4 text-white hover:bg-color5 -->

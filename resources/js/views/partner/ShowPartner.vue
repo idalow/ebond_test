@@ -11,7 +11,7 @@
         </div>
 
         <div class="flex mb-2 justify-center items-center pb-6">
-            <img class="h-20 w-20 rounded-full object-cover" :src="partners.data.attributes.avatar">
+            <img class="h-40 w-40 rounded-full object-cover" :src="'/storage/' + partners.data.attributes.avatar.url">
         </div>
 
         <ShowField label="name" :data="partners.data.attributes.name" />

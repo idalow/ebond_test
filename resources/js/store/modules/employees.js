@@ -20,7 +20,7 @@ const actions = {
     fetchEmployees({commit, state}) {
 
         commit('setEmployeesStatus', 'Loading');
-
+        
         axios.get('/api/employees')
             .then(response => {
                 commit('setEmployees', response.data);
@@ -34,7 +34,14 @@ const actions = {
 
         commit('setEmployeesStatus', 'Loading');
 
-        axios.post('/api/employees', form)
+        const formData = new FormData();
+        formData.append('avatar', form.avatar);
+        formData.append('name', form.name);
+        formData.append('post', form.post);
+        formData.append('email', form.email);
+        formData.append('phone', form.phone);
+
+        axios.post('/api/employees', formData)
             .then(response => {
                 commit('setEmployeesStatus', 'Sent');
             })
@@ -58,7 +65,15 @@ const actions = {
 
         commit('setEmployeesStatus', 'Loading');
 
-        axios.patch('/api/employees/' + data.employeeId, data.form)
+        const formData = new FormData();
+        formData.append('avatar', data.form.avatar);
+        formData.append('name', data.form.name);
+        formData.append('post', data.form.post);
+        formData.append('email', data.form.email);
+        formData.append('phone', data.form.phone);
+        formData.append('_method', 'PATCH');
+
+        axios.post('/api/employees/' + data.employeeId, formData)
             .then(response => {
                 commit('setEmployeesStatus', 'Sent');
             })
