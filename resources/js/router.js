@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from './views/Home';
+import Pages from './views/Pages';
+import Login from './views/Login';
+import Register from './views/Register';
 import EmployeesList from './views/employee/EmployeesList';
 import NewEmployee from './views/employee/NewEmployee';
 import ShowEmployee from './views/employee/ShowEmployee';
@@ -24,22 +27,27 @@ export default new VueRouter({
     mode: 'history',
 
     routes: [
-        {   path: '/', name: 'home', component: Home,   },
-        {   path: '/employee', name: 'employee', component: EmployeesList, meta: { title: 'Employee List' } },
-        {   path: '/employee/new', name: 'newemployee', component: NewEmployee, meta: { title: 'New Employee' } },
-        {   path: '/employee/:id', name: 'showemployee', component: ShowEmployee, meta: { title: 'Show Employee' }  },
-        {   path: '/employee/:id/edit', name: 'editemployee', component: EditEmployee, meta: { title: 'Edit Employee' } },
-        {   path: '/employee/:id/statistics', name: 'statisticsemployee', component: StatisticsEmployee, meta: { title: 'Statistics Employee' } },
-        {   path: '/partner', name: 'partner', component: PartnersList, meta: { title: 'Partners List' } },
-        {   path: '/partner/new', name: 'newpartner', component: NewPartner, meta: { title: 'New Partner' } },
-        {   path: '/partner/:id', name: 'showpartner', component: ShowPartner, meta: { title: 'Show Partner' }  },
-        {   path: '/partner/:id/edit', name: 'editpartner', component: EditPartner, meta: { title: 'Edit Partner' } },
-        {   path: '/task', name: 'task', component: TaskList, meta: { title: 'Task List' } },
-        {   path: '/task/new', name: 'newtask', component: NewTask, meta: { title: 'New Task' } },
-        {   path: '/task/statistics', name: 'statisticstask', component: StatisticsTask, meta: { title: 'Statistics Task' } },
-        {   path: '/task/:id/edit', name: 'edittask', component: EditTask, meta: { title: 'Edit Task' } },
-        {   path: '/task/:id/done', name: 'donetask', component: DoneTask, meta: { title: 'Done Task' } },
-        {   path: '/done_job', name: 'donejob', component: DoneJobList, meta: { title: 'Done Job List' } },
-        {   path: '/done_job/statistics', name: 'statisticsdonejob', component: StatisticsDoneJob, meta: { title: 'Statistics Done Job' } },
+        {   path: '/login', name: 'Login', component: Login, meta: { title: 'Login' } },
+        {   path: '/register', name: 'Register', component: Register, meta: { title: 'Register' } },
+        {   path: '/', component: Pages,
+        children: [
+            {   path: '', name: 'home', component: Home,   },
+            {   path: '/employee', name: 'employee', component: EmployeesList, meta: { title: 'Employee List' } },
+            {   path: '/employee/new', name: 'newemployee', component: NewEmployee, meta: { title: 'New Employee' } },
+            {   path: '/employee/:id', name: 'showemployee', component: ShowEmployee, meta: { title: 'Show Employee' }  },
+            {   path: '/employee/:id/edit', name: 'editemployee', component: EditEmployee, meta: { title: 'Edit Employee' } },
+            {   path: '/employee/:id/statistics', name: 'statisticsemployee', component: StatisticsEmployee, meta: { title: 'Statistics Employee' } },
+            {   path: '/partner', name: 'partner', component: PartnersList, meta: { title: 'Partners List' } },
+            {   path: '/partner/new', name: 'newpartner', component: NewPartner, meta: { title: 'New Partner' } },
+            {   path: '/partner/:id', name: 'showpartner', component: ShowPartner, meta: { title: 'Show Partner' }  },
+            {   path: '/partner/:id/edit', name: 'editpartner', component: EditPartner, meta: { title: 'Edit Partner' } },
+            {   path: '/task', name: 'task', component: TaskList, meta: { title: 'Task List' } },
+            {   path: '/task/new', name: 'newtask', component: NewTask, meta: { title: 'New Task' } },
+            {   path: '/task/statistics', name: 'statisticstask', component: StatisticsTask, meta: { title: 'Statistics Task' } },
+            {   path: '/task/:id/edit', name: 'edittask', component: EditTask, meta: { title: 'Edit Task' } },
+            {   path: '/task/:id/done', name: 'donetask', component: DoneTask, meta: { title: 'Done Task' } },
+            {   path: '/done_job', name: 'donejob', component: DoneJobList, meta: { title: 'Done Job List' } },
+            {   path: '/done_job/statistics', name: 'statisticsdonejob', component: StatisticsDoneJob, meta: { title: 'Statistics Done Job' } },
+        ] },
     ]
 })

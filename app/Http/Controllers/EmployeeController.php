@@ -13,12 +13,12 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        return new EmployeeCollection(Employee::all());
+        return new EmployeeCollection(auth()->user()->employees()->get());
     }
 
     public function store()
     {
-        $employee = Employee::create($this->validateData());
+        $employee = auth()->user()->employees()->create($this->validateData());
 
         $employee->image->storeImage($employee);
 

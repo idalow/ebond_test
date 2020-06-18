@@ -12,12 +12,12 @@ class TaskController extends Controller
 {
     public function index()
     {
-        return new TaskCollection(Task::all());
+        return new TaskCollection(auth()->user()->tasks()->get());
     }
 
     public function store()
     {
-        $task = Task::create($this->validateData());
+        $task = auth()->user()->tasks()->create($this->validateData());
 
         return new TaskResource($task);
     }

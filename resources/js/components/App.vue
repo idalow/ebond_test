@@ -1,30 +1,21 @@
 <template>
-
-    <div class="flex flex-row flex-1 h-screen overflow-y-hidden bg-gray-200">
-
-        <Nav />
-
-        <div class="m-10 mx-auto w-4/5">
-            <div class="flex-col h-full p-20 bg-white rounded-lg shadow-2xl overflow-y-auto">
-                <transition name="main-router-anim" mode="out-in">
-                    <router-view></router-view>
-                </transition>
-            </div>
-        </div>
-
-    </div>
-
+        
+    <transition name="main-router-anim" mode="out-in">
+        <router-view></router-view>
+    </transition>
+    
 </template>
 
 <script>
-    import Nav from './Nav';
+
+    import { mapGetters } from 'vuex';
 
     export default {
-        name: 'App',
+        name: "App",
 
-        components: {
-            Nav,
-        },
+        props: [
+            'user'
+        ],
 
         created() {
 
@@ -37,6 +28,7 @@
                 this.$store.dispatch('setPageTitle', to.meta.title);
             }
         },
+
     }
 </script>
 
@@ -62,7 +54,7 @@
     }
     @keyframes pagecome {
     from {
-        transform: translateY(+150px);
+        transform: translateY(-150px);
         opacity: 0;
     }
     to {

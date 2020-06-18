@@ -12,12 +12,12 @@ class PartnerController extends Controller
 {
     public function index()
     {
-        return new PartnerCollection(Partner::all());
+        return new PartnerCollection(auth()->user()->partners()->get());
     }
 
     public function store()
     {
-        $partner = Partner::create($this->validateData());
+        $partner = auth()->user()->partners()->create($this->validateData());
 
         $partner->image->storeImage($partner);
 

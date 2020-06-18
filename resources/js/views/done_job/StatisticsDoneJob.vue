@@ -11,7 +11,7 @@
         </div>
 
         <div class="flex flex-row w-full justify-around items-center py-4">
-            <div class="flex justify-center">
+            <div class="flex justify-start">
                 <label for="partner" class="uppercase text-xs font-bold absolute pl-3 pt-2"> partner </label>
                 <select id="partner" class="pt-8 w-full rounded-lg border border-gray-200 p-3 placeholder-gray-400 outline-none focus:bg-gray-200 shadow-lg"
                     v-model="selectedPartner"
@@ -25,7 +25,9 @@
             </div>
             
             <ShowField v-if="doneJobsForPartners" class="flex justify-center" label="Worktime" :data="doneJobsForPartners.time_count" />
+            <ShowField v-else class="flex justify-center" label="Worktime" :data="'*'" />
             <ShowField v-if="doneJobsForPartners" class="flex justify-center" label="Finished jobs" :data="doneJobsForPartners.done_job_count" />
+            <ShowField v-else class="flex justify-center" label="Finished jobs" :data="'*'" />
 
         </div>
 

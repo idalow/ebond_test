@@ -20,6 +20,7 @@ class CreatePartnersTable extends Migration
             $table->string('address');
             $table->string('email')->unique();
             $table->string('phone', 15)->unique();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

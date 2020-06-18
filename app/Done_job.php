@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class Done_job extends Model
 {
-    protected $fillable = ['task_id', 'employee_id', 'time'];
+    protected $fillable = ['task_id', 'employee_id', 'time', 'user_id'];
 
     public function task()
     {
@@ -17,6 +17,11 @@ class Done_job extends Model
     public function employee()
     {
         return $this->belongsTo(Employee::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function path()

@@ -20,14 +20,20 @@ use Illuminate\Http\Request;
 // Route::get('/employees', 'EmployeeController@index');
 // Route::post('/employees', 'EmployeeController@store');
 
-Route::get('/getdonejobsbypartners/{partner}', 'GetDoneJobsByPartnersController');
-Route::get('/gettasksbypartners/{partner}', 'GetTasksByPartnersController');
+Auth::routes();
 
-Route::apiResources([
+Route::middleware('auth:sanctum')->group(function () {
 
-    '/employees' => 'EmployeeController',
-    '/partners' => 'PartnerController',
-    '/tasks' => 'TaskController',
-    '/donejobs' => 'DoneJobController',
+    Route::get('/getdonejobsbypartners/{partner}', 'GetDoneJobsByPartnersController');
+    Route::get('/gettasksbypartners/{partner}', 'GetTasksByPartnersController');
 
-]);
+    Route::apiResources([
+
+        '/user' => 'UserController',
+        '/employees' => 'EmployeeController',
+        '/partners' => 'PartnerController',
+        '/tasks' => 'TaskController',
+        '/donejobs' => 'DoneJobController',
+
+    ]);
+});

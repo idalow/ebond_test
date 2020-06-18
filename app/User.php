@@ -39,6 +39,29 @@ class User extends Authenticatable
 
     public function image()
     {
-        return $this->morphOne(Image::class, 'imageable');
+        return $this->morphOne(Image::class, 'imageable')
+        ->withDefault(function ($image) {
+            $image->url = 'avatar\default-user-img.jpg';
+        });
+    }
+
+    public function done_jobs()
+    {
+        return $this->hasMany(Done_job::class);
+    }
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
+
+    public function partners()
+    {
+        return $this->hasMany(Partner::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
     }
 }

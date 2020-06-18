@@ -11,6 +11,6 @@ class GetDoneJobsByPartnersController extends Controller
 {
     public function __invoke(Partner $partner)
     {
-        return new DoneJobCollection(Done_job::whereIn('task_id', $partner->tasks()->pluck('id'))->get());
+        return new DoneJobCollection(auth()->user()->done_jobs()->whereIn('task_id', $partner->tasks()->pluck('id'))->get());
     }
 }

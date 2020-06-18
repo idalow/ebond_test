@@ -11,6 +11,6 @@ class GetTasksByPartnersController extends Controller
 {
     public function __invoke(Partner $partner)
     {   
-        return new TaskCollection(Task::where('partner_id', $partner->id)->get());
+        return new TaskCollection(auth()->user()->tasks()->where('partner_id', $partner->id)->get());
     }
 }

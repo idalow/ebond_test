@@ -14,11 +14,12 @@ module.exports = {
         '1/7': '14.2857143%',
       },
 
+      boxShadow: {
+        inner: 'inset 0 10px 25px 4px rgba(0, 0, 0, 0.1)',
+      },
+
     },
 
-    boxShadow: {
-      inner: 'inset 0 10px 25px 4px rgba(0, 0, 0, 0.1)',
-    },
   },
   variants: {},
   plugins: [],

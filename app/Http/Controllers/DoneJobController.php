@@ -12,12 +12,12 @@ class DoneJobController extends Controller
 {
     public function index()
     {
-        return new DoneJobCollection(Done_job::all());
+        return new DoneJobCollection(auth()->user()->done_jobs()->get());
     }
 
     public function store()
     {
-        $doneJob = Done_job::create($this->validateData());
+        $doneJob = auth()->user()->done_jobs()->create($this->validateData());
 
         return new DoneJobResource($doneJob);
     }

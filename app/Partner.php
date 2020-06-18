@@ -7,11 +7,16 @@ use Illuminate\Support\Str;
 
 class Partner extends Model
 {
-    protected $fillable = ['name', 'address', 'email', 'phone'];
+    protected $fillable = ['name', 'address', 'email', 'phone', 'user_id'];
 
     public function tasks()
     {
         return $this->hasMany(Task::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function path()

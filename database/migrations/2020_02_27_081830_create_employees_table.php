@@ -19,6 +19,7 @@ class CreateEmployeesTable extends Migration
             $table->string('post');
             $table->string('email')->unique();
             $table->string('phone', 15)->unique();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

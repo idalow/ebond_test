@@ -7,11 +7,16 @@ use Illuminate\Support\Str;
 
 class Employee extends Model
 {
-    protected $fillable = ['name', 'post', 'email', 'phone'];
+    protected $fillable = ['name', 'post', 'email', 'phone', 'user_id'];
 
     public function done_jobs()
     {
         return $this->hasMany(Done_job::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function path()
