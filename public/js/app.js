@@ -39656,7 +39656,9 @@ var render = function() {
         _c("img", {
           staticClass: "w-10 h-10 rounded-full object-cover",
           attrs: {
-            src: _vm.data.data.attributes.employee.data.attributes.avatar
+            src:
+              "/storage/" +
+              _vm.data.data.attributes.employee.data.attributes.avatar.url
           }
         }),
         _vm._v(" "),
@@ -40369,7 +40371,11 @@ var render = function() {
     _c("div", { staticClass: "flex flex-row items-center" }, [
       _c("img", {
         staticClass: "w-8 h-8 rounded-full object-cover",
-        attrs: { src: _vm.data.data.attributes.partner.data.attributes.avatar }
+        attrs: {
+          src:
+            "/storage/" +
+            _vm.data.data.attributes.partner.data.attributes.avatar.url
+        }
       }),
       _vm._v(" "),
       _c("p", { staticClass: "font-semibold text-base text-gray-500 pl-2" }, [
